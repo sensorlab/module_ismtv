@@ -63,13 +63,17 @@ class IsmtvModule(wishful_module.AgentModule):
 
     @wishful_module.bind_function(upis.radio.get_radio_info)
     def get_radio_info(self, platform_id):
-        if platform_id == "sensor":
-            sensor = SpectrumSensor(self.node)
-            config_list = sensor.get_config_list()
-        elif platform_id == "generator":
-            generator = SignalGenerator(self.node)
-            config_list = generator.get_config_list()
-        else:
-            config_list = str(platform_id) + ": Not supported! Try: sensor or generator"
+        try:
+            if platform_id == "sensor":
+                sensor = SpectrumSensor(self.node)
+                config_list = sensor.get_config_list()
+            elif platform_id == "generator":
+                generator = SignalGenerator(self.node)
+                config_list = generator.get_config_list()
+            else:
+                config_list = str(platform_id) + ": Not supported! Try: sensor or generator"
 
-        return config_list
+            return config_list
+
+        except as e:
+            return str(e)
