@@ -75,5 +75,5 @@ class IsmtvModule(wishful_module.AgentModule):
 
             return config_list
 
-        except as e:
-            return str(e)
+        except:
+            return 'An error occured.'
