@@ -27,7 +27,7 @@ class IsmtvModule(wishful_module.AgentModule):
     def __init__(self, dev):
         super(IsmtvModule, self).__init__()
         self.log = logging.getLogger('IsmtvModule')
-        ser = serial.Serial(dev, 115200, timeout=10)
+        ser = serial.Serial(dev, 115200, timeout=1)
         self.node = alh.ALHTerminal(ser)
 
     @wishful_module.bind_function(upis.radio.get_measurements)
@@ -76,4 +76,4 @@ class IsmtvModule(wishful_module.AgentModule):
             return config_list
 
         except:
-            return 'An error occured.'
+            return "An error occured."
