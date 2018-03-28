@@ -27,7 +27,7 @@ class IsmtvModule(wishful_module.AgentModule):
     def __init__(self, dev):
         super(IsmtvModule, self).__init__()
         self.log = logging.getLogger('IsmtvModule')
-        ser = serial.Serial(dev, 115200)
+        ser = serial.Serial(dev, 115200, timeout=10)
         self.node = alh.ALHTerminal(ser)
 
     @wishful_module.bind_function(upis.radio.get_measurements)
